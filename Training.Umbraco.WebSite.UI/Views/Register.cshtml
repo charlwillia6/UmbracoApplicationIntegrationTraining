@@ -1,0 +1,6 @@
+﻿@using Training.Umbraco.WebSite.UI.Models
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Layout.cshtml";
+}
+@{ Html.RenderPartial("~/Views/Partials/RegisterPartialView.cshtml", new StoreRegisterModel());}

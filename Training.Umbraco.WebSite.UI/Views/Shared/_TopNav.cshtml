@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IEnumerable<IPublishedContent>>
+
+<ul class="nav navbar-nav">
+
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@item.Url">@item.Name</a>
+        </li>
+    }
+
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        @*<li><a href="@Url.Action("Index", "Dashboard", new {area = "AdminPanel"})">Admin Panel</a></li>*@
+            <li><a href="@Url.Action("Logout","Login")">Log off</a></li>
+    }
+    else
+    {
+        <li><a href="/Login">Log in</a></li>
+            <li><a href="~/Register">Register</a></li>
+    }
+</ul>
+
+

@@ -1,0 +1,9 @@
+﻿@model TextViewModel
+
+<div class="col-sm-12">
+    <div class="clearfix"></div>
+    <h2 class="section-heading">@Model.Heading</h2>
+    <div class="lead">
+        @Html.Raw(Model.RichText)
+    </div>
+</div>

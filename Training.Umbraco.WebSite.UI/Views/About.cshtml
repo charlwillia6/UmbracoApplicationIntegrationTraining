@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@Model.Content.Name</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p>@Model.Content.GetPropertyValue("summary")</p>
+                <img class="img-rounded img-responsive" src="@Umbraco.TypedMedia(Model.Content.GetPropertyValue<string>("leftImage")).Url" />
+            </div>
+            <div class="col-md-6">
+                <p>@Html.Raw(Model.Content.GetPropertyValue("richText"))</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+               @CurrentPage.GetGridHtml("editorText")
+            </div>
+        </div>
+    </div>
+</div>

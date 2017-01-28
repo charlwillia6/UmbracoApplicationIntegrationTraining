@@ -1,0 +1,11 @@
+﻿@model IEnumerable<CategoryViewModel>
+
+@if (Model != null && Model.Any())
+{
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("ProductsByCategory", "Category", new { id = @item.Id })" class="list-group-item">@item.Name</a>
+        }
+    </div>
+}

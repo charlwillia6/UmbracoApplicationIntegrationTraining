@@ -1,0 +1,50 @@
+﻿@using Training.Mvc.OnlineStore.UI.Areas.AdminPanel.ViewModels
+@model ListViewModel<Training.Mvc.OnlineStore.UI.ViewModels.ProductViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model != null && Model.List != null && Model.List.Items.Any())
+        {
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <td>
+                            NAME
+                        </td>
+                        <td>
+                            CATEGORY
+                        </td>
+                        <td>
+                            SUMMARY
+                        </td>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model.List.Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Summary)
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            @Html.Partial("_Pagination", Model.List)
+        }
+    </div>
+</div>

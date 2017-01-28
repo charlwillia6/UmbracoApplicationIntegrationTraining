@@ -1,0 +1,27 @@
+﻿@model Training.Umbraco.WebSite.UI.Models.Interfaces.IPager
+
+@{
+    var prevButtonStatusCss = Model.ShowPrevPage ? "" : "disabled";
+    var nextButtonStatusCss = Model.ShowNextPage ? "" : "disabled";
+}
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination">
+        <li class="paginate_button previous @prevButtonStatusCss" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+            <a href="@string.Format(Model.UrlFormat, Model.Page - 1)">Previous</a>
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var isCurrentPageCss = Model.Page == i ? "active" : "";
+            <li class="paginate_button @isCurrentPageCss" aria-controls="dataTables-example" tabindex="0">
+                <a href="@string.Format(Model.UrlFormat, i)">@i</a>
+            </li>
+        }
+
+        <li class="paginate_button next @nextButtonStatusCss" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+            <a href="@string.Format(Model.UrlFormat, Model.Page + 1)">Next</a>
+        </li>
+    </ul>
+}

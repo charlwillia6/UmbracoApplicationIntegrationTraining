@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="row carousel-holder">
+            @Html.Action("FeaturedProducts", "Home")
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Top rated products</h2>
+            </div>
+
+            @Html.Action("TopRates", "Home")
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Top selling products</h2>
+            </div>
+
+            @Html.Action("TopSelling", "Home")
+        </div> 
+    </div>
+
+</div>

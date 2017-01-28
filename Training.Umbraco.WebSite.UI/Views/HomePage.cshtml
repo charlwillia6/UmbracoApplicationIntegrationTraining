@@ -1,0 +1,54 @@
+﻿@inherits StoreTemplatePage<HomePage>
+
+@{ 
+    Layout = "Layout.cshtml";
+}
+
+@*<ul>
+    @foreach (var product in ProductService.GetTopRated(10)) {
+        <li>@product.Name</li>
+    }
+</ul>*@
+
+@*@inherits UmbracoTemplatePage
+@{
+    Layout = "Layout.cshtml"; 
+}*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row carousel-holder">
+        <!-- good place for a carousel-->
+            @Html.Action("FeaturedProducts", "HomePage")
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Product Spotlight</h2>
+            </div>
+            <!-- good place for product spotlight-->
+            <ul>
+                @foreach (var product in Model.Content.ProductSpotlight)
+                {
+                    <li>@product.Name - @product.Artist</li>
+                }
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Top Rated Products</h2>
+            </div>
+            <!-- good place top rated products listing-->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Top Selling Products</h2>
+            </div>
+            <!-- good place for a top selling products macro -->
+            @Umbraco.RenderMacro("TopSelling", new { numberOfItems = "3" })
+        </div>
+    </div>
+
+</div>

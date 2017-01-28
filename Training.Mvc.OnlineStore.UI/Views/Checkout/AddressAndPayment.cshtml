@@ -1,0 +1,23 @@
+﻿@model OrderViewModel
+
+@{
+    ViewBag.Title = "Address And Payment";
+}
+
+<div class="row">
+
+    Html.Action("CartSummary", "ShoppingCart")
+
+    @using (Html.BeginForm())
+    {
+
+        <h2>Address And Payment</h2>
+        <fieldset>
+            <legend>Shipping Information</legend>
+
+            @Html.EditorForModel()
+        </fieldset>
+        <input type="submit" value="Submit Order" />
+    }
+
+</div>

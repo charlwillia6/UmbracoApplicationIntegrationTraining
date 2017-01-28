@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Training.Umbraco.WebSite.UI.ViewModels.CategoryBasicViewModel>
+
+@if (Model != null && Model.Any())
+{
+    <div class="list-group">
+        @foreach (var item in Model)
+        {
+            <a href="@string.Format("/Category/{0}", item.Id)" class="list-group-item">@item.Name</a>
+        }
+    </div>
+}

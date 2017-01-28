@@ -1,0 +1,7 @@
+﻿@using Training.Mvc.OnlineStore.UI.Models
+@model IEnumerable<ProductPreviewViewModel>
+
+@if (Model != null && Model.Any())
+{
+    @Html.Partial("_Carousel", Model.Select(x => new CarouselItem(x.Name, Url.Action("Details", "Product", new { id = x.Id}), x.CarouselImageUrl)))
+}

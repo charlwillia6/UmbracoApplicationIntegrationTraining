@@ -1,0 +1,53 @@
+﻿@inherits UmbracoViewPage<ProductViewModel>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-4">
+        <h1>@Model.Content.Name</h1>
+        <h2>@Model.Name</h2>
+        <h3>$@Model.Price</h3>
+    </div>
+    <div class="col-lg-8">
+        <div class="featurette" id="about">
+            @*<img class="featurette-image img-circle img-responsive pull-right" src="@Model.DetailsImageUrl">*@
+            <img class="featurette-image img-circle img-responsive pull-right" src="@Model.ImageUrl">
+            <h2 class="featurette-heading">
+                <span class="text-muted">@Model.Summary</span>
+            </h2>
+            <p class="lead">
+                @Model.Description
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.Partial("_Rates", Model.Rates)
+        </div>
+        <div class="col-md-6">
+
+            @using (Html.BeginForm("AddToCart", "ShoppingCart", null, FormMethod.Get))
+            {
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input name="quantity" type="number" value="1" />
+                <button type="submit" class="btn btn-info">
+                    <i class="fa fa-shopping-cart"></i>
+                    Add to cart
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model.Content.HasProperty("reviewText") && Model.Content.HasValue("reviewText"))
+            {
+                <h2>Reviews</h2>
+                <blockquote>
+                    @Model.Content.GetPropertyValue("reviewText")<cite>@Model.Content.GetPropertyValue("title")</cite>
+                </blockquote>
+            }
+        </div>
+    </div>
+</div>

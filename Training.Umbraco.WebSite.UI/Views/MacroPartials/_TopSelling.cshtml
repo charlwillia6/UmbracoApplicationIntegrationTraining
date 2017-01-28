@@ -1,0 +1,4 @@
+﻿@using Umbraco.Web.Models
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@Html.Action("TopSelling", "HomePage", new { count = Model.GetParameterValue("numberOfItems", 3)})

@@ -1,0 +1,15 @@
+﻿{
+    "$schema": "/App_Plugins/manifestSchema.json",
+    "propertyEditors": [
+        {
+            "alias": "My.CustomEditor",
+            "name": "Custom Editor",
+            "editor": {
+                "view": "~/App_Plugins/CustomEditor/customeditor.html"
+            }
+        }
+    ],
+    "javascript": [
+        "~/App_Plugins/CustomEditor/customeditor.controller.js"
+    ]
+}

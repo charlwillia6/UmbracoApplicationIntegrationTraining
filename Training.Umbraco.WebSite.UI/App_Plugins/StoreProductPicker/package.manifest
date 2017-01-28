@@ -1,0 +1,15 @@
+﻿{
+	propertyEditors:[
+		{
+			name: "Product Picker",
+			alias: "store.productpicker",
+			editor: {
+				view: "/app_plugins/StoreProductPicker/editor.html",
+				valueType: "JSON"
+			}
+		}
+	],
+	javascript:[
+		"/app_plugins/StoreProductPicker/editor.controller.js"	
+	]
+}

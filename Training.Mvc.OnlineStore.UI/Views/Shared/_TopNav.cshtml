@@ -1,0 +1,23 @@
+﻿@model BaseViewModel
+<ul class="nav navbar-nav">
+    <li>
+        <a href="@Url.Action("Index", "About")">About</a>
+    </li>
+    <li>
+        <a href="#">Services</a>
+    </li>
+    <li>
+        <a href="#">Contact</a>
+    </li>
+    @if (Model.IsUserLogged)
+    {
+        <li><a href="@Url.Action("Index", "Dashboard", new {area = "AdminPanel"})">Admin Panel</a></li>
+        <li><a href="@Url.Action("LogOff", "Account")">Log off</a></li>
+    }
+    else
+    {
+        <li><a href="@Url.Action("Login", "Account")">Log in</a></li>
+        <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+    }
+
+</ul>

@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Training.Umbraco.WebSite.UI.Extensions
+
+@{
+    ViewBag.Title = "Shopping Cart Summary";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+@Html.Action("Index", "ShoppingCart")
+

@@ -1,0 +1,6 @@
+﻿@model System.Collections.Generic.IEnumerable<Training.Umbraco.WebSite.UI.ViewModels.ProductPreviewViewModel>
+
+@if (Model != null && Model.Any())
+{
+        @Html.Partial("_Carousel", Model.Select(x => new CarouselItem(x.Name, Url.Action("Details", "Product", new { id = x.Id }), x.CarouselImageUrl)))
+}

@@ -1,0 +1,97 @@
+﻿@using Training.Umbraco.WebSite.UI.Extensions
+
+@inherits UmbracoViewPage<CategoryViewModel>
+@{
+    ViewBag.Title = "Products by category";
+    Layout = "~/Views/Layout.cshtml";
+
+    var numberOfItems = Model.Products == null ? 0 : Model.Products.List.TotalItems;
+}
+
+<div class="row">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                
+                <small>@numberOfItems @Html.SingularOrPluralText(numberOfItems, "product", "products") found</small>
+
+                @if (numberOfItems > 1)
+                {
+                    <select class="pull-right" id="DDL_SortBy">
+                        @foreach (var opt in Model.Products.ProductSortByList)
+                        {
+                            <option redirectto="@GetSortUrl("sortBy", opt.Value)" @(opt.Selected ? "selected=\"selected\"" : "")>@opt.Text</option>
+                        }
+                    </select>
+                }
+
+            </h1>
+
+        </div>
+    </div>
+
+    @if (Model.Products != null && Model.Products.List.Items != null)
+    {
+        for (int i = 0; i < Model.Products.List.Items.Count(); i++)
+        {
+            var productViewModel = Model.Products.List.Items.ElementAt(i);
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="@productViewModel.PreviewImageUrl" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">$@productViewModel.Price.ToString("N")</h4>
+                        <h4>
+                            <a href="@Url.GetProductDetailsUrl(productViewModel.Id.ToString())">@productViewModel.Name</a>
+                        </h4>
+                        <p>@productViewModel.Summary</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Partial("_Rates", productViewModel.Rates)
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <a href="@Url.Action("AddToCart", "ShoppingCart", new { productId = @productViewModel.Id, quantity = 1 })" class="btn btn-info">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+</div>
+
+@if (Model.Products.List != null && Model.Products.List.Items != null && Model.Products.List.Items.Any())
+{
+    <div class="row">
+        @Html.Partial("_Pagination", Model.Products.List)
+    </div>
+}
+
+@functions
+{
+    private string GetSortUrl(string key, string value)
+    {
+        if (Request.Url == null)
+        {
+            return "#";
+        }
+
+        return Html.AppendQueryStringItem(Request.Url.ToString(), key, value);
+    }
+}
+
+<script>
+
+    $(document).ready(function () {
+        $("#DDL_SortBy").change(function () {
+            var url = $("#DDL_SortBy option:selected").first().attr("redirectTo");
+            window.location.href = url;
+        });
+    });
+</script>

@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IEnumerable<ProductPreviewViewModel>>
+@using Training.Umbraco.WebSite.UI.Extensions
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        @foreach (var productViewModel in Model)
+        {
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="@productViewModel.PreviewImageUrl" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">$@productViewModel.Price.ToString("N")</h4>
+                        <h4>
+                            <a href="@Url.GetProductDetailsUrl(productViewModel.Id.ToString())">@productViewModel.Name</a>
+                        </h4>
+                        <p>@productViewModel.Summary</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.Partial("_Rates", productViewModel.Rates)
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <a href="@Url.Action("AddToCart", "ShoppingCart", new { productId = @productViewModel.Id, quantity = 1 })" class="btn btn-info">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+}

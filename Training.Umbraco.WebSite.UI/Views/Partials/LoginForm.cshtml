@@ -1,0 +1,24 @@
+﻿@model Umbraco.Web.Models.LoginModel
+@using Training.Umbraco.WebSite.UI.Controllers
+
+@using (Html.BeginUmbracoForm<LoginController>("Login"))
+{
+    <fieldset>
+        <legend>Login</legend>
+
+        @Html.ValidationSummary("loginModel", true)
+
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username)
+        @Html.ValidationMessageFor(m => m.Username)
+        <br />
+
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password)
+        <br />
+
+        <button>Login</button>
+    </fieldset>
+}
+

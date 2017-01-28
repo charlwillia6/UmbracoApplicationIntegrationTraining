@@ -1,0 +1,35 @@
+﻿@using Training.Umbraco.WebSite.UI.Extensions
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<NavShoppingCartViewModel>
+
+@{
+    var shoppingCartPageUrl = "";
+    var hp = Umbraco.GetHomePage();
+    if (hp != null)
+    {
+        var shoppingCartPage = hp.Children.SingleOrDefault(x => x.DocumentTypeAlias.InvariantEquals("ShoppingCart"));
+
+        if (shoppingCartPage != null)
+        {
+            shoppingCartPageUrl = shoppingCartPage.Url;
+        }
+    }
+}
+
+@if (!string.IsNullOrEmpty(shoppingCartPageUrl))
+{
+    <ul class="nav navbar-nav fa-pull-right">
+        <li>
+            <a href="@shoppingCartPageUrl" class="submit-form">
+                <i class="fa fa-shopping-cart fa-12"></i>
+            </a>
+        </li>
+        <li>
+            <a href="@shoppingCartPageUrl" class="submit-form">
+                <span>
+                    $@Model.CartTotal
+                    (@Model.TotalItems @(Model.TotalItems > 1 ? "Products" : "Product"))
+                </span>
+            </a>
+        </li>
+    </ul>
+}

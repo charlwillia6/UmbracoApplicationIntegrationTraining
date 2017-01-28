@@ -1,0 +1,32 @@
+﻿<div class="umb-editor umb-mediapicker" ng-controller="Store.ProductPickerController">
+
+    <ul class="umb-sortable-thumbnails">
+        <li style="width: 120px; height: 100px; overflow: hidden;"ng-repeat="product in model.displayValue">
+
+            <img ng-src="{{product.thumbnail}}" alt="">
+
+            <div class="umb-sortable-thumbnails__actions">
+                <a class="umb-sortable-thumbnails__action -red" href="" ng-click="remove($index)">
+                    <i class="icon icon-delete"></i>
+                </a>
+            </div>
+
+        </li>
+    </ul>
+
+    <ul class="umb-sortable-thumbnails">
+        <li style="border: none">
+            <a href="#" class="add-link" ng-click="overlay.show=true" prevent-default>
+                <i class="icon icon-add large"></i>
+            </a>
+        </li>
+    </ul>
+
+
+    <umb-overlay 
+        ng-if="overlay.show"
+        model="overlay"
+        view="'/app_plugins/StoreProductPicker/dialog.html'"
+        position="center"></umb-overlay>      
+
+</div>

@@ -1,0 +1,17 @@
+﻿@model NavShoppingCartViewModel
+
+<ul class="nav navbar-nav fa-pull-right">
+    <li>
+        <a href="@Url.Action("Index", "ShoppingCart")">
+            <i class="fa fa-shopping-cart fa-12"></i>
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "ShoppingCart")">
+            <span>
+                £@Model.CartTotal
+                (@Model.TotalItems @(Model.TotalItems > 1 ? "Products" : "Product"))
+            </span>
+        </a>
+    </li>
+</ul>
